@@ -31,14 +31,15 @@ function AddEmployee(props) {
         />
     </div>);
 
-  return (
+  return (<div className="addEmployee">
+    <h2>Add an employee</h2>
     <form onSubmit={handleSubmit}>
-        <label>Enter your name:</label>
+        <label>Enter your name:<br /></label>
         <input type="text" name="name" value={inputs.name || ""} onChange={handleChange}/>
         <div className="checkBoxes">{inputSkills}</div>
         <input type="submit" />
     </form>
-  )
+  </div>)
 }
 
 export default AddEmployee;
