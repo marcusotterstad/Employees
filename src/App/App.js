@@ -1,6 +1,7 @@
 import './App.css';
 import {getObjById} from '../utils';
 import {Employees} from '../Employees/Employees';
+import {Buttons} from '../Buttons/Buttons';
 import Requests from '../Requests/Requests';
 import React from 'react';
 
@@ -14,12 +15,22 @@ export class App extends React.Component {
         {id: 3, name: "Alf Otterstad", skills: ["api", "react", "java", "backend", "databases"]}
       ],
       skills: ["api", "react", "javascript", "html", "css", "express/node", "git"],
-      request: "POST"
+      request: "",
+      changeId: 0
     };
+    this.setChangeId = this.setChangeId.bind(this);
+    this.setRequest = this.setRequest.bind(this);
     this.addEmployee = this.addEmployee.bind(this);
     this.editEmployee = this.editEmployee.bind(this);
   }
 
+  setRequest = (rea) => {
+    this.setState({request: rea});
+  }
+
+  setChangeId = (id) => {
+    this.setState({changeId: id});
+  }
 
   // POST
   addEmployee(employee) {
@@ -33,14 +44,25 @@ export class App extends React.Component {
   }
 
   // PUT
-  editEmployee(id) {
-    const prevObj = getObjById(this.state.employees, id);
+  editEmployee(employee) {
+    let newEmployee = {id: (this.state.changeId), name: employee.name, skills: []};
+    for (const [key, value] of Object.entries(employee)) {
+      if(value === true) {
+        newEmployee.skills.push(key);
+      }
+    }
+    
+    const prevObj = getObjById(this.state.employees, this.state.changeId);
     const ObjIndex = this.state.employees.indexOf(prevObj);
     
-    const newEmployees = {...this.state.employees};
-    newEmployees[ObjIndex] = prevObj;
+    const newEmployees = this.state.employees;
+    newEmployees[ObjIndex] = newEmployee;
 
     this.setState({employees: newEmployees});
+  }
+
+  deleteEmployee(employee) {
+    
   }
 
 
@@ -49,11 +71,14 @@ export class App extends React.Component {
     return (
       <div className="App">
         <h1 className="App-logo">Employees</h1>
-        <Requests request="POST"
+
+        <Buttons setRequest={this.setRequest}/>
+
+        <Requests request={this.state.request}
+        onEditEmployee={this.editEmployee} changeId={this.state.changeId} // for editEmployee or PUT and deleteEmployee or DELETE
         onAddEmployee={this.addEmployee} skills={this.state.skills} // for AddEmployee or POST
         />
-        <button>Create new employee</button>
-        <Employees employees={this.state.employees} handleEdit={this.editEmployee}/>
+        <Employees employees={this.state.employees} handleChangeId={this.setChangeId} setRequest={this.setRequest}/>
       </div>
     );
   }
