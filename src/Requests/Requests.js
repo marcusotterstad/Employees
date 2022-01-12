@@ -11,7 +11,7 @@ function Requests(props) {
         case("PUT"):
             return <EditEmployee onEditEmployee={props.onEditEmployee} changeId={props.changeId} skills={props.skills}/>;
         case("DELETE"):
-            return <DeleteEmployee onDeleteEmployee={props.onDeleteEmployee} changeId={props.changeId} />;
+            return <DeleteEmployee onDeleteEmployee={props.onDeleteEmployee} changeId={props.changeId} handleSetRequest={props.handleSetRequest} />;
         default:
             return null;
     }

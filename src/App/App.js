@@ -22,6 +22,7 @@ export class App extends React.Component {
     this.setRequest = this.setRequest.bind(this);
     this.addEmployee = this.addEmployee.bind(this);
     this.editEmployee = this.editEmployee.bind(this);
+    this.deleteEmployee = this.deleteEmployee.bind(this);
   }
 
   setRequest = (rea) => {
@@ -61,8 +62,15 @@ export class App extends React.Component {
     this.setState({employees: newEmployees});
   }
 
-  deleteEmployee(employee) {
-    
+  // DELETE
+  deleteEmployee() {
+    const newEmployees = this.state.employees;
+    newEmployees.splice(this.state.changeId-1, 1);
+    for (let i = 0; i < newEmployees.length; i++) {
+      newEmployees[i].id = i+1;
+    }
+
+    this.setState({employees: newEmployees});
   }
 
 
@@ -74,8 +82,9 @@ export class App extends React.Component {
 
         <Buttons setRequest={this.setRequest}/>
 
-        <Requests request={this.state.request}
-        onEditEmployee={this.editEmployee} changeId={this.state.changeId} // for editEmployee or PUT and deleteEmployee or DELETE
+        <Requests request={this.state.request} handleSetRequest={this.setRequest}
+        onDeleteEmployee={this.deleteEmployee} // for deleteEmployee or DELETE
+        onEditEmployee={this.editEmployee} changeId={this.state.changeId} // for editEmployee or PUT
         onAddEmployee={this.addEmployee} skills={this.state.skills} // for AddEmployee or POST
         />
         <Employees employees={this.state.employees} handleChangeId={this.setChangeId} setRequest={this.setRequest}/>
