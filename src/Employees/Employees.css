@@ -1,8 +1,13 @@
 .employees {
-    width: 550px;
+    width: 100%;
     height: auto;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    background-color: blue;
+    background-color: darkslategray;
     margin: 0 auto;
+}
+
+th {
+    background-color: darkslategray;
+    color: white;
+    font-size: x-large;
+    font-weight:bolder;
 }

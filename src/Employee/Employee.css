@@ -1,8 +1,8 @@
 .box {
     width: 500px;
-    max-height: 100px;
-    background-color: lightblue;
+    min-height: 114px;
     margin: 20px auto;
+    background-color: white;
     border: 1px solid black;
 }
 
@@ -15,6 +15,7 @@
     bottom: 0px;
     display: inline-flex;
     justify-content:left;
+    flex-wrap:wrap;
 
 }
 
@@ -30,4 +31,22 @@
     background-color: black;
     padding: 5px;
 
+}
+
+.deleteButton {
+    background-color: red;
+    color: white;
+    font-weight:bold;
+    font-size: 16px;
+    padding: 3px;
+    margin: 3px;
+}
+
+.editButton {
+    background-color: darkorange;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 3px;
+    margin: 3px;
 }
