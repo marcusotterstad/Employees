@@ -18,6 +18,7 @@ function AddEmployee(props) {
     const handleSubmit = (event) => {
         event.preventDefault();
         props.onAddEmployee(inputs);
+        props.handleSetRequest("");
     }
 
     const inputSkills = props.skills.map(skill => <div>

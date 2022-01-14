@@ -7,9 +7,9 @@ function Requests(props) {
 
     switch(props.request) {
         case("POST"):
-            return <AddEmployee onAddEmployee={props.onAddEmployee} skills={props.skills}/> ;
+            return <AddEmployee onAddEmployee={props.onAddEmployee} skills={props.skills} handleSetRequest={props.handleSetRequest}/> ;
         case("PUT"):
-            return <EditEmployee onEditEmployee={props.onEditEmployee} changeId={props.changeId} skills={props.skills}/>;
+            return <EditEmployee onEditEmployee={props.onEditEmployee} changeId={props.changeId} skills={props.skills} handleSetRequest={props.handleSetRequest}/>;
         case("DELETE"):
             return <DeleteEmployee onDeleteEmployee={props.onDeleteEmployee} changeId={props.changeId} handleSetRequest={props.handleSetRequest} />;
         default:
