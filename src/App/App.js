@@ -78,9 +78,11 @@ export class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <h1 className="App-logo">Employees</h1>
+        <header>
+          <h1 className="App-logo">Manage <b>Employees</b></h1>
+          <Buttons setRequest={this.setRequest}/>
+        </header>
 
-        <Buttons setRequest={this.setRequest}/>
 
         <Requests request={this.state.request} handleSetRequest={this.setRequest}
         onDeleteEmployee={this.deleteEmployee} // for deleteEmployee or DELETE
